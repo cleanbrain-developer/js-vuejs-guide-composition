@@ -1,23 +1,29 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
+  <div id="app">
+    <button @click="increment">
+      Count is: {{ count }}
+    </button>
+  </div>
 </template>
 
-<script>
+<script setup>
+import {onMounted, ref} from "vue";
+// reactive state
+const count = ref(0)
 
-export default {
-  name: 'App',
-  components: {
-  }
+// functions that mutate state and trigger updates
+function increment() {
+  count.value++
 }
+
+// lifecycle hooks
+onMounted(() => {
+  console.log(`The initial count is ${count.value}.`)
+})
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+button {
+  font-weight: bold;
 }
 </style>
