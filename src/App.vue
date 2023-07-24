@@ -1,14 +1,17 @@
 <template>
-
+  <div :class="classObject">AAAAAAAA</div>
 </template>
 
-<script>
+<script setup>
+import {computed, ref} from "vue";
 
-export default {
-  name: 'App',
-  components: {
-  }
-}
+const isActive = ref(true)
+const error = ref({type: 'fatal'})
+
+const classObject = computed(() => ({
+  active: isActive.value && !error.value,
+  'text-danger': error.value && error.value.type === 'fatal'
+}))
 </script>
 
 <style>
